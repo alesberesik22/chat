@@ -1,8 +1,17 @@
 import React from "react";
 import "./LoginStyles.scss";
 import login from "../assets/login/images/login.svg";
+import { UserAuth } from "../context/AuthContext";
 
 const Register = (props: any) => {
+  const { googleSignIn, user, signIn, signUp } = UserAuth();
+  const handeSignUp = async () => {
+    try {
+      await signUp();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="base_container" ref={props.containerRef}>
       <div className="header">Register</div>
@@ -26,7 +35,7 @@ const Register = (props: any) => {
         </div>
       </div>
       <div className="footer">
-        <button className="btn" type="button">
+        <button className="btn" type="button" onClick={handeSignUp}>
           Register
         </button>
       </div>

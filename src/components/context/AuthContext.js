@@ -5,6 +5,9 @@ import {
   signOut,
   onAuthStateChanged,
   signInWithRedirect,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../config/firebase/Firebase";
 
@@ -19,6 +22,23 @@ export const AuthContextProvider = ({ children }) => {
   const logOut = () => {
     signOut(auth);
   };
+  const signIn = () => {
+    signInWithEmailAndPassword(auth, "test1234@mail.com", "123456").then(
+      (userCredentials) => {
+        console.log(userCredentials);
+      }
+    );
+  };
+  const signUp = async () => {
+    const { user } = await createUserWithEmailAndPassword(
+      auth,
+      "test1234@mail.com",
+      "123456"
+    );
+    await updateProfile(user, {
+      displayName: "test",
+    }).then(console.log(user));
+  };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currUser) => {
       setUser(currUser);
@@ -29,7 +49,9 @@ export const AuthContextProvider = ({ children }) => {
     };
   }, []);
   return (
-    <AuthContext.Provider value={{ googleSignIn, logOut, user }}>
+    <AuthContext.Provider
+      value={{ googleSignIn, logOut, user, signIn, signUp }}
+    >
       {children}
     </AuthContext.Provider>
   );

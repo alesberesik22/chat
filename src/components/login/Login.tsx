@@ -7,11 +7,19 @@ import { UserAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Login = (props: any) => {
-  const { googleSignIn, user } = UserAuth();
+  const { googleSignIn, user, signIn } = UserAuth();
   const navigate = useNavigate();
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleSignIn = async () => {
+    console.log("sign");
+    try {
+      await signIn();
     } catch (error) {
       console.log(error);
     }
@@ -44,7 +52,7 @@ const Login = (props: any) => {
         </div>
       </div>
       <div className="footer">
-        <button className="btn" type="button">
+        <button className="btn" type="button" onClick={handleSignIn}>
           Login
         </button>
         <button className="btn" type="button" onClick={handleGoogleSignIn}>
