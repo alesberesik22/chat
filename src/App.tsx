@@ -1,13 +1,29 @@
 import React from "react";
 import "./App.css";
-import Login from "./components/login/Login";
-import Register from "./components/login/Register";
+import { AuthContextProvider } from "./components/context/AuthContext";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Sign from "./components/pages/Sign/Sign";
+import Home from "./components/pages/Home/Home";
+import Protected from "./components/Protected/Protected";
 
 function App() {
   return (
     <div className="App">
-      <Sign />
+      <BrowserRouter>
+        <AuthContextProvider>
+          <Routes>
+            <Route path="/" element={<Sign />} />
+            <Route
+              path="/home"
+              element={
+                <Protected>
+                  <Home />
+                </Protected>
+              }
+            />
+          </Routes>
+        </AuthContextProvider>
+      </BrowserRouter>
     </div>
   );
 }

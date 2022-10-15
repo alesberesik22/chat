@@ -7,7 +7,11 @@ import "../../login/Register";
 const RightSide = (props: any) => {
   return (
     <div
-      className="right_side"
+      className={
+        props.currentActive === "Register"
+          ? "right_side left"
+          : "right_side right"
+      }
       ref={props.containerRef}
       onClick={props.onClick}
     >

@@ -16,7 +16,7 @@
     border-radius: 9px;
     position: relative;
     z-index: 99;
-    width: 30%;
+    width: 25%;
     height: 70%;
     z-index: 99;
     padding: 17px 10px;
@@ -26,11 +26,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 70%;
-  background-color: #3498db;
+  align-items: center;
+  height: 50%;
+  background-color: var(--primary-color);
   width: 10%;
   position: absolute;
-  right: 27%;
+  right: 29%;
   border-radius: 9px;
   z-index: 1;
   transition: all 400ms ease-in-out;
@@ -38,17 +39,17 @@
   box-shadow: 40px 0px 25px 1px rgba(0, 0, 0, 0.24);
 
   &.right {
-    right: -20%;
+    right: 62%;
     align-items: flex-end;
     &:hover {
-      right: -45%;
+      scale: 1.05;
     }
   }
   &.left {
-    right: 20%;
+    right: 29%;
     align-items: flex-start;
     &:hover {
-      right: 45%;
+      scale: 1.05;
     }
   }
 
