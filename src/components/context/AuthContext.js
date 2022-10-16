@@ -9,6 +9,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
+import avatar from "../assets/chat/images/avatar.png";
 import { auth } from "../config/firebase/Firebase";
 
 const AuthContext = createContext();
@@ -22,21 +23,18 @@ export const AuthContextProvider = ({ children }) => {
   const logOut = () => {
     signOut(auth);
   };
-  const signIn = () => {
-    signInWithEmailAndPassword(auth, "test1234@mail.com", "123456").then(
-      (userCredentials) => {
-        console.log(userCredentials);
-      }
-    );
+  const signIn = (email, password) => {
+    signInWithEmailAndPassword(auth, email, password);
   };
-  const signUp = async () => {
+  const signUp = async (email, password, name) => {
     const { user } = await createUserWithEmailAndPassword(
       auth,
-      "test1234@mail.com",
-      "123456"
+      email,
+      password
     );
     await updateProfile(user, {
-      displayName: "test",
+      displayName: name,
+      photoURL: avatar,
     }).then(console.log(user));
   };
   useEffect(() => {

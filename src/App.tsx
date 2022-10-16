@@ -3,7 +3,7 @@ import "./App.css";
 import { AuthContextProvider } from "./components/context/AuthContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Sign from "./components/pages/Sign/Sign";
-import Home from "./components/pages/Home/Home";
+import Chat from "./components/pages/Chat/Chat";
 import Protected from "./components/Protected/Protected";
 
 function App() {
@@ -14,10 +14,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Sign />} />
             <Route
-              path="/home"
+              path="/chat"
               element={
                 <Protected>
-                  <Home />
+                  <Chat />
                 </Protected>
               }
             />

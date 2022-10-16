@@ -15,6 +15,7 @@ body {
 :root {
   --primary-color: #562bf7;
   --border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  --primary-transition: all 250ms ease-in-out;
 }
 
 code {
